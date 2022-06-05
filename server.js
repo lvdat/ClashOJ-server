@@ -19,23 +19,6 @@ const db = require("./app/models");
 const Role = db.role;
 db.sequelize.sync();
 
-function initial() {
-    Role.create({
-      id: 1,
-      name: "user"
-    });
-   
-    Role.create({
-      id: 2,
-      name: "moderator"
-    });
-   
-    Role.create({
-      id: 3,
-      name: "admin"
-    });
-}
-
 // router 
 app.get("/", (req, res) => {
     res.json({message: "Chúc mừng mày đã fetch thành công truy vấn vào ClashOJ API xD"})

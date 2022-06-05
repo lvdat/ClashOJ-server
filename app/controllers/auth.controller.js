@@ -22,13 +22,13 @@ exports.signup = (req, res) => {
           }
         }).then(roles => {
           user.setRoles(roles).then(() => {
-            res.send({ message: "User was registered successfully!" });
+            res.send({ message: "Đăng ký thành công!" });
           });
         });
       } else {
         // user role = 1
         user.setRoles([1]).then(() => {
-          res.send({ message: "User was registered successfully!" });
+          res.send({ message: "Đăng ký thành công!" });
         });
       }
     })
@@ -44,7 +44,7 @@ exports.signin = (req, res) => {
   })
     .then(user => {
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: "Không tìm thấy người dùng này!" });
       }
       var passwordIsValid = bcrypt.compareSync(
         req.body.password,
@@ -68,6 +68,8 @@ exports.signin = (req, res) => {
           id: user.id,
           username: user.username,
           email: user.email,
+          avatar: user.avatar,
+          mssv: user.mssv,
           roles: authorities,
           accessToken: token
         });
